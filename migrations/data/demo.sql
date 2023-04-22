@@ -1,0 +1,60 @@
+-- MariaDB dump 10.19  Distrib 10.11.2-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: database
+-- ------------------------------------------------------
+-- Server version	10.11.2-MariaDB-1:10.11.2+maria~ubu2204
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `database`
+--
+
+USE `database`;
+
+--
+-- Dumping data for table `tasks`
+--
+
+LOCK TABLES `tasks` WRITE;
+/*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
+INSERT INTO `tasks` VALUES
+(1,'tech1 summary','2023-04-22 19:33:44.418742','2023-04-22 19:33:52.391770','user1'),
+(2,'tech1 summary2','2023-04-22 19:34:13.121559','2023-04-22 19:34:38.461011','user1'),
+(3,'tech2 summary','2023-04-22 19:34:38.466896','2023-04-22 19:34:45.387802','user2'),
+(4,'tech2 summary2','2023-04-22 19:34:56.450585','2023-04-22 19:34:56.450585','user2');
+/*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES
+('user1','tech1','technician','$2y$10$eVyNAa0hiER4UaACjDwHLuBwFvf1QVWb/ysvHkzdnapL9tuG4nvGq','tech1_api_key','2023-04-22 19:31:30.040994','2023-04-22 19:32:12.181798'),
+('user2','tech2','technician','$2y$10$eVyNAa0hiER4UaACjDwHLuBwFvf1QVWb/ysvHkzdnapL9tuG4nvGq','tech2_api_key','2023-04-22 19:31:54.567625','2023-04-22 19:33:13.975927'),
+('user3','manager1','manager','$2y$10$eVyNAa0hiER4UaACjDwHLuBwFvf1QVWb/ysvHkzdnapL9tuG4nvGq','manager_api_key','2023-04-22 19:33:13.982030','2023-04-22 19:33:13.982030');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-04-22 19:44:09
