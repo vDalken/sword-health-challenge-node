@@ -33,9 +33,13 @@
 
 #### Install dependencies and Run:
 
+
+
 ```docker-compose up -d```
 
-or
+The application will download it's dependencies and transpile the code. 
+It might take a few seconds on the first iteration.
+To watch the application status during this initial setup you can run it without the deamon flag.
 
 ```docker-compose up``` (easy way to see the application logs)
 
