@@ -27,7 +27,7 @@ import { NotificationsModule } from './notification/notifications.module';
         database: String(process.env.DATABASE_NAME),
         synchronize: Boolean(JSON.parse(process.env.DATABASE_SYNC)),
         autoLoadEntities: true,
-        entities: [User, Task],
+        entities: ['.src/*/entity/*.entity.ts'],
         logging: Boolean(JSON.parse(process.env.DATABASE_LOGGING)),
       }),
 

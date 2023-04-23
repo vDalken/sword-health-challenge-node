@@ -2,7 +2,7 @@
 
 #### Tech Stack:
 - Docker & docker-compose
-- Node.js
+- Node.js + TypeScript
 - MySQL
 - RabbitMQ
 
@@ -75,7 +75,7 @@ But it's a good practise to have migrations.)
 
 ##### Node:
 
-- [GET,POST] /task endpoints that require token authentication and role authorization and (see config/packages/security.yaml)
+- [GET,POST] /task endpoints that require token authentication and role authorization 
 
 - POST /task
 ```
