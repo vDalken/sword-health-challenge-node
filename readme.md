@@ -107,7 +107,6 @@ ROLE_MANAGER TOKENS: manager_api_key
 - When the technician creates a new task, it actually sends a message to a rabbit-mq queue. 
 A consumer picks up the message and runs the process to notify all managers.
 The system can be extended to support multiple notification systems but at the moment it only supports stdout notifications.
-(see App/Message/ and (see config/packages/messenger.yaml))
 
   
 ### Future work & Limitations:
