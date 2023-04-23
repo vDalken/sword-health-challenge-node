@@ -33,9 +33,9 @@ export class TaskService {
     await this.taskRepository.persist(task);
 
     await this.messageBus.emit('', new CreateTaskNotification(
-      request.getSummary(),
-      request.getUser().getIdentifier(),
-      new Date(),
+      task.getSummary(),
+      task.getUser().getIdentifier(),
+      task.getCreatedAt(),
     ));
 
     return new TaskResponse(task);

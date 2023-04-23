@@ -23,6 +23,6 @@ export class CreateTaskNotification implements CreateTaskNotificationInterface {
   }
 
   public toString(): string {
-    return `${this.createdAt} - User ${this.userId} performed: ${this.message}`;
+    return `${this.getCompletionDate()} - User ${this.getUserId()} performed: ${this.getMessage()}`;
   }
 }

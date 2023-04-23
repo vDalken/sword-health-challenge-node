@@ -16,10 +16,20 @@
 - nestjs/testing, supertest and jest: testing module
 
 #### Project Structure:
-- migrations: optional migrations to run
-- src/users: module with features related with user data and authentication
-- src/tasks: module with features related with task creation and task listing
-- src/notifications: consumer module to process and notify all managers
+- **migrations**: optional migrations & data sample to run
+- **src/users**: module with features related with user data and authentication
+- **src/tasks**: module with features related with task creation and task listing
+- **src/notifications**: consumer module to process and notify all managers
+- **src/*/controller**: entry point for the http requests
+- **src/*/consumer**: entry point for the message queue consumer
+- **src/*/dto**: request and response mapping files
+- **src/*/entity**: domain entities
+- **src/*/repository**: entity persistence
+- **src/*/service**: domain logic and processing
+- **src/main.ts**: main fail for the application boostrap
+- **.module.ts**: configuration files for the module
+- **tests/integration**: bulk of the tests, with in memory database and http service
+- **tests/unit**: unit tests
 
 #### Install dependencies and Run:
 
@@ -38,7 +48,11 @@ mysql container access: ```docker exec -it database /bin/bash```
 ```docker exec -it database /bin/bash```
 ```mysql -u root -proot database < /var/home/data/data/demo.sql```
 
-#### Run the migrations (not required for simplicity, the application will boostrap database and relations based on the existing data models)
+#### Run the migrations 
+(This step is not required. 
+For simplicity the application will generate the database relations automatically
+But it's a good practise to have migrations.)
+
 ```docker exec -it npm run migrations:run```
 
 #### Tests:
@@ -47,9 +61,9 @@ mysql container access: ```docker exec -it database /bin/bash```
 
 ```docker exec -it backend npm run test:cov```
 
-- nestjs/testing module, supertest and jest for tests (code coverage ~90%):
+- nestjs/testing module, supertest and jest for tests (code coverage ~97%):
 1) Integration: In-memory SQLLite for persistence, 
-2) Unit: mock objects for nearly all dependencies:
+2) Unit: automock for nearly all dependencies:
 
 #### Quality Tools:
 
@@ -83,7 +97,6 @@ curl --location --request GET 'http://localhost:8080/task?offset=1&limit=5' \
 ```
 
 ROLE_TECHNICIAN TOKENS: tech1_api_key, tech2_api_key
-
 ROLE_MANAGER TOKENS: manager_api_key
 
 ##### RabbitMQ:

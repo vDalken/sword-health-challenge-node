@@ -18,7 +18,7 @@ export class NotificationConsumer {
   }
 
   @EventPattern('')
-  public async handle(data: Record<string, CreateTaskNotificationInterface>) {
+  public async handle(data: Record<string, CreateTaskNotificationInterface>): Promise<void> {
     const notification = new CreateTaskNotification(
       String(data.message),
       String(data.userId),
