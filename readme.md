@@ -103,6 +103,11 @@ curl --location --request GET 'http://localhost:8080/task?offset=1&limit=5' \
 ROLE_TECHNICIAN TOKENS: tech1_api_key, tech2_api_key
 ROLE_MANAGER TOKENS: manager_api_key
 
+##### Logging:
+- Fastify logger: http requests and responses
+- TypeORM logger: database query logging
+- NestJS logger: Application data logging
+
 ##### RabbitMQ:
 - When the technician creates a new task, it actually sends a message to a rabbit-mq queue. 
 A consumer picks up the message and runs the process to notify all managers.
