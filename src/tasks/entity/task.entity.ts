@@ -4,50 +4,54 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  ManyToOne,
-} from 'typeorm';
+  ManyToOne
+} from 'typeorm'
 
-import { User } from '../../users/entity/user.entity';
+import { User } from '../../users/entity/user.entity'
 
 @Entity({ name: 'tasks' })
 export class Task {
   @PrimaryGeneratedColumn()
-    id: number;
+  id: number
 
   @Column({ nullable: false, length: 2500 })
-    summary: string;
+  summary: string
 
   @ManyToOne(() => User, (user) => user.tasks)
-    user: User;
+  user: User
 
   @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date;
+  createdAt: Date
 
   @UpdateDateColumn({ name: 'updated_at' })
-    updatedAt: Date;
+  updatedAt: Date
 
-  public constructor(summary: string, user: User) {
-    this.summary = summary;
-    this.user = user;
+  public constructor(summary: string, user?: User) {
+    this.summary = summary
+    this.user = user
   }
 
   public getIdentifier(): number {
-    return this.id;
+    return this.id
   }
 
   public getSummary(): string {
-    return this.summary;
+    return this.summary
+  }
+
+  public setSummary(newSummary: string) {
+    this.summary = newSummary
   }
 
   public getUser(): User {
-    return this.user;
+    return this.user
   }
 
   public getCreatedAt(): Date {
-    return this.createdAt;
+    return this.createdAt
   }
 
   public getUpdatedAt(): Date {
-    return this.updatedAt;
+    return this.updatedAt
   }
 }

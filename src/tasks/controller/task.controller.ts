@@ -4,6 +4,7 @@ import {
   HttpCode,
   Post,
   UseGuards,
+  Put
 } from '@nestjs/common';
 import { StatusCodes } from 'http-status-codes';
 import { RoleGuard } from '../../users/utils/role.guard';
@@ -16,6 +17,8 @@ import { CreateTaskRequest } from '../dto/request/create/create-task.request';
 import { ListTaskRequest } from '../dto/request/list/list-task.request';
 import { ListTask } from '../dto/request/list/list-task.decorator';
 import { TaskResponse } from '../dto/response/task.response';
+import { UpdateTask } from '../dto/request/update/update-task.decorator';
+import { UpdateTaskRequest } from '../dto/request/update/update-task.request';
 
 @Controller('task')
 export class TaskController {
@@ -39,4 +42,13 @@ export class TaskController {
   public async executeListTasks(@ListTask() request: ListTaskRequest): Promise<TaskResponse[]> {
     return this.service.listTasks(request);
   }
+
+  @Put()
+  @UseGuards(ApiKeyGuard, RoleGuard)
+  @Roles(Role.Technician)
+  @HttpCode(StatusCodes.OK)
+  public async updateTask(@UpdateTask() request : UpdateTaskRequest) : Promise<TaskResponse>{
+    return this.service.updateTask(request);
+  }
+
 }
