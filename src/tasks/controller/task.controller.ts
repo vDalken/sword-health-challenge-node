@@ -4,7 +4,8 @@ import {
   HttpCode,
   Post,
   UseGuards,
-  Put
+  Put,
+  Param
 } from '@nestjs/common';
 import { StatusCodes } from 'http-status-codes';
 import { RoleGuard } from '../../users/utils/role.guard';
@@ -19,6 +20,8 @@ import { ListTask } from '../dto/request/list/list-task.decorator';
 import { TaskResponse } from '../dto/response/task.response';
 import { UpdateTask } from '../dto/request/update/update-task.decorator';
 import { UpdateTaskRequest } from '../dto/request/update/update-task.request';
+import { GetTask } from '../dto/request/get/get-task.decorator';
+import { GetTaskRequest } from '../dto/request/get/get-task.request';
 
 @Controller('task')
 export class TaskController {
@@ -49,6 +52,14 @@ export class TaskController {
   @HttpCode(StatusCodes.OK)
   public async updateTask(@UpdateTask() request : UpdateTaskRequest) : Promise<TaskResponse>{
     return this.service.updateTask(request);
+  }
+
+  @Get(':id')
+  @UseGuards(ApiKeyGuard, RoleGuard)
+  @Roles(Role.Technician, Role.Manager)
+  @HttpCode(StatusCodes.OK)
+  public async getSpecificTask(@GetTask() request : GetTaskRequest) : Promise<TaskResponse>{
+    return this.service.getSpecificTask(request);
   }
 
 }

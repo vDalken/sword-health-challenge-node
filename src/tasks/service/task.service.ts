@@ -9,6 +9,7 @@ import { UserRepositoryInterface } from '../../users/repository/user.repository.
 import { CreateTaskNotification } from '../../notification/dto/request/create-task.notification'
 import { TaskResponse } from '../dto/response/task.response'
 import { UpdateTaskInterface } from '../dto/request/update/update-task.interface'
+import { GetTaskRequest } from '../dto/request/get/get-task.request'
 
 @Injectable()
 export class TaskService {
@@ -57,12 +58,30 @@ export class TaskService {
   public async updateTask(request: UpdateTaskInterface): Promise<TaskResponse> {
     const task = await this.taskRepository.findTaskById(request.getId())
 
-    if (task) {
-      task.setSummary(request.getSummary())
-      await this.taskRepository.persist(task)
-      return new TaskResponse(task)
+    if (!task) {
+      throw new BadRequestException('no task found')
     }
 
-    throw new BadRequestException('no task found');
+    const repoTaskUser = task.getUser()
+
+    if(!(repoTaskUser.getIdentifier() === request.getUser().getIdentifier())){
+      throw new BadRequestException('user doesn\'t belong to task')
+    }
+
+    task.setSummary(request.getSummary())
+    await this.taskRepository.persist(task)
+    return new TaskResponse(task)
+  }
+
+  public async getSpecificTask(request : GetTaskRequest) : Promise<TaskResponse>{
+      const taskId = request.getId();
+
+      const task = await this.taskRepository.findTaskById(taskId);
+
+      if(!task){
+        throw new BadRequestException('no task found')
+      }
+
+      return new TaskResponse(task);
   }
 }
