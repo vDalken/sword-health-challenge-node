@@ -3,8 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { Services } from './services.enum';
-import { User } from './users/entity/user.entity';
-import { Task } from './tasks/entity/task.entity';
 import { UsersModule } from './users/users.module';
 import { TasksModule } from './tasks/tasks.module';
 import { NotificationsModule } from './notification/notifications.module';
